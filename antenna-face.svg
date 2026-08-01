@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64" role="img" aria-label="cara feliz con antenas">
+  <defs>
+    <radialGradient id="skin" cx="38%" cy="30%" r="78%">
+      <stop offset="0%"   stop-color="#FFE86B"/>
+      <stop offset="55%"  stop-color="#FFD336"/>
+      <stop offset="100%" stop-color="#F5B32B"/>
+    </radialGradient>
+    <radialGradient id="bulb" cx="35%" cy="28%" r="80%">
+      <stop offset="0%"   stop-color="#FFE86B"/>
+      <stop offset="100%" stop-color="#F7BC2E"/>
+    </radialGradient>
+    <clipPath id="mouthClip">
+      <path d="M16.5 41.2 Q32 38.6 47.5 41.2 Q46.2 57.5 32 57.5 Q17.8 57.5 16.5 41.2 Z"/>
+    </clipPath>
+  </defs>
+
+  <!-- antenas -->
+  <g fill="none" stroke="#EFAE28" stroke-width="2.6" stroke-linecap="round">
+    <path d="M23.5 17.5 C21.2 12.4 19.4 9.6 16.8 7.4"/>
+    <path d="M40.5 17.5 C42.8 12.4 44.6 9.6 47.2 7.4"/>
+  </g>
+  <circle cx="15.4" cy="6.1" r="3.6" fill="url(#bulb)"/>
+  <circle cx="48.6" cy="6.1" r="3.6" fill="url(#bulb)"/>
+
+  <!-- cara -->
+  <circle cx="32" cy="37.5" r="23.2" fill="url(#skin)"/>
+  <ellipse cx="23" cy="25" rx="9.5" ry="6.5" fill="#FFF7C4" opacity=".2"/>
+
+  <!-- ojos -->
+  <ellipse cx="23.2" cy="32.4" rx="3.3" ry="4.4" fill="#4A2F17"/>
+  <ellipse cx="40.8" cy="32.4" rx="3.3" ry="4.4" fill="#4A2F17"/>
+  <ellipse cx="24.3" cy="30.6" rx="1.15" ry="1.5" fill="#fff" opacity=".85"/>
+  <ellipse cx="41.9" cy="30.6" rx="1.15" ry="1.5" fill="#fff" opacity=".85"/>
+
+  <!-- boca sonriente con dientes -->
+  <g clip-path="url(#mouthClip)">
+    <rect x="14" y="38" width="36" height="22" fill="#6B3A20"/>
+    <rect x="14" y="38" width="36" height="6.4" fill="#FFFFFF"/>
+    <ellipse cx="32" cy="60" rx="11" ry="6.5" fill="#E8637A"/>
+  </g>
+  <path d="M16.5 41.2 Q32 38.6 47.5 41.2 Q46.2 57.5 32 57.5 Q17.8 57.5 16.5 41.2 Z"
+        fill="none" stroke="#5A2F19" stroke-width="1.1" opacity=".55"/>
+</svg>

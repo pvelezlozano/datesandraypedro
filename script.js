@@ -47,12 +47,22 @@ btnNo.addEventListener('click', (e) => e.preventDefault());
 
 const screenAsk = $('#screen-ask');
 const screenCards = $('#screen-cards');
+const deck = $('#deck');
 const cards = [...document.querySelectorAll('.info-card')];
 const dots = [...document.querySelectorAll('.dot')];
 const btnPrev = $('#btn-prev');
 const btnNext = $('#btn-next');
 
 let current = 0;
+
+// El deck toma la altura de la tarjeta activa (y la transiciona), para que las
+// tarjetas cortas no arrastren el espacio vacío de la más alta.
+function syncHeight() {
+  if (!screenCards.classList.contains('is-active')) return;
+  // La tarjeta activa es position:relative, así que su altura es la de su contenido
+  // y no la hereda del deck: se puede medir sin liberar la altura del contenedor.
+  deck.style.height = cards[current].offsetHeight + 'px';
+}
 
 // Una tarjeta a la vez.
 function show(i, dir = 1) {
@@ -68,7 +78,13 @@ function show(i, dir = 1) {
 
   btnPrev.hidden = current === 0;
   btnNext.hidden = current === cards.length - 1;
+
+  syncHeight();
 }
+
+// El texto se reacomoda al rotar el teléfono o al cargar las fuentes.
+window.addEventListener('resize', syncHeight);
+if (document.fonts && document.fonts.ready) document.fonts.ready.then(syncHeight);
 
 $('#btn-yes').addEventListener('click', () => {
   screenAsk.classList.remove('is-active');

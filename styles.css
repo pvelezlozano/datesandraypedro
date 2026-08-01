@@ -182,11 +182,32 @@ main {
   opacity: .9;
 }
 
-/* Todas las tarjetas comparten la misma celda: la altura no salta al navegar. */
-.deck { display: grid; }
+/* la carita con antenas (chiste local) */
+/* algo más grande que 1em: el viewBox reserva espacio arriba para las antenas,
+   así la cara queda del mismo tamaño que un emoji normal al lado del texto */
+.eyebrow-face {
+  width: 1.35em;
+  height: 1.35em;
+  vertical-align: -.3em;
+  margin-left: .1em;
+  animation: float 3.6s ease-in-out infinite;
+}
+
+/* Las tarjetas se apilan una encima de otra: solo la activa está en el flujo
+   (position: relative), las demás salen de él (position: absolute). Así la altura
+   natural del deck es exactamente la de la tarjeta activa —ninguna tarjeta carga
+   con el espacio muerto de la más alta— y el JS la fija en px para poder animarla
+   (no se puede transicionar desde `height: auto`). */
+.deck {
+  position: relative;
+  transition: height .42s cubic-bezier(.22, 1, .36, 1);
+}
 
 .info-card {
-  grid-area: 1 / 1;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
   background: var(--card);
   border-radius: 26px;
   padding: clamp(1.6rem, 6vw, 2.25rem) clamp(1.25rem, 5vw, 2rem);
@@ -201,6 +222,7 @@ main {
 .info-card.from-left { transform: translateX(-26px); }
 
 .info-card.is-active {
+  position: relative;   /* la única en el flujo: define la altura del deck */
   opacity: 1;
   visibility: visible;
   transform: none;
