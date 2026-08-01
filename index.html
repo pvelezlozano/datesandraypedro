@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Una pregunta para ti 🌸</title>
+<meta name="description" content="Tengo algo que preguntarte...">
+<meta name="theme-color" content="#F9F1E7">
+
+<!-- Open Graph: para que el preview del link se vea bien -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="Tengo algo que preguntarte 🌸">
+<meta property="og:description" content="Ábrelo cuando tengas un momentito...">
+<meta property="og:url" content="https://datesandraypedro.com">
+
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌸</text></svg>">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<main>
+
+  <!-- ══════════════ PANTALLA 1 · LA PREGUNTA ══════════════ -->
+  <section class="screen is-active" id="screen-ask">
+    <div class="card">
+      <p class="kicker">para Sandra</p>
+      <h1 class="title">
+        <span class="deco">🌸</span>
+        ¿Te gustaría ir a una cita conmigo?
+        <span class="deco">🌸</span>
+      </h1>
+
+      <div class="choices">
+        <button class="btn btn--yes" id="btn-yes" type="button">Sí <span class="heart">💗</span></button>
+        <button class="btn btn--no" id="btn-no" type="button">No</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════ PANTALLA 2 · LAS TARJETAS ══════════════ -->
+  <section class="screen" id="screen-cards">
+
+    <p class="eyebrow">Entonces...</p>
+
+    <div class="deck" id="deck">
+
+      <!-- 1 · DÍA -->
+      <article class="info-card" data-card="1">
+        <span class="info-emoji">⏰</span>
+        <h2 class="info-label">Día</h2>
+        <p class="info-value">Miércoles 12 de agosto</p>
+        <p class="info-sub">6:00 pm</p>
+      </article>
+
+      <!-- 2 · DÓNDE -->
+      <article class="info-card" data-card="2">
+        <span class="info-emoji">🚗</span>
+        <h2 class="info-label">Dónde</h2>
+        <p class="info-value">Paso por ti al jale</p>
+      </article>
+
+      <!-- 3 · LA IDEA -->
+      <article class="info-card" data-card="3">
+        <span class="info-emoji">🍽️</span>
+        <h2 class="info-label">La idea</h2>
+        <p class="info-value">Preparar lasaña y cenar juntos</p>
+
+        <!-- lasaña dibujada en CSS -->
+        <div class="lasagna" aria-hidden="true">
+          <span class="layer layer--cheese"></span>
+          <span class="layer layer--pasta"></span>
+          <span class="layer layer--sauce"></span>
+          <span class="layer layer--pasta"></span>
+          <span class="layer layer--sauce"></span>
+          <span class="layer layer--pasta"></span>
+          <span class="steam steam--1"></span>
+          <span class="steam steam--2"></span>
+          <span class="steam steam--3"></span>
+        </div>
+
+        <p class="ingredients" aria-hidden="true">🍅 &nbsp;🧄 &nbsp;🧅 &nbsp;🧀 &nbsp;🌿 &nbsp;🍷</p>
+        <p class="info-sub">yo llevo todo</p>
+      </article>
+
+      <!-- 4 · CIERRE -->
+      <article class="info-card info-card--final" data-card="4">
+        <span class="info-emoji">💕</span>
+        <h2 class="final-title">¡No puedo esperar a verte!</h2>
+        <p class="info-sub">confirmar aquí 👇</p>
+
+        <a class="btn btn--confirm" id="btn-confirm" href="#" target="_blank" rel="noopener">
+          Confirmar la cita <span class="heart">💌</span>
+        </a>
+      </article>
+
+    </div>
+
+    <nav class="nav" aria-label="Navegación de tarjetas">
+      <button class="btn btn--ghost" id="btn-prev" type="button"><span aria-hidden="true">←</span> Atrás</button>
+      <button class="btn btn--ghost" id="btn-next" type="button">Siguiente <span aria-hidden="true">→</span></button>
+    </nav>
+
+    <div class="dots" id="dots" aria-hidden="true">
+      <span class="dot is-on"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span>
+    </div>
+
+  </section>
+
+</main>
+
+<script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,360 @@
+/* ═══════════════════════════════════════════════════
+   datesandraypedro.com
+   Paleta "cake": crema, rosa, frambuesa.
+   ═══════════════════════════════════════════════════ */
+
+:root {
+  --cream:        #F9F1E7;
+  --card:         #FDF8F0;
+
+  --pink:         #D9526E;
+  --pink-deep:    #C13F5C;
+
+  --ink:          #6B5A52;
+  --ink-soft:     #9A8880;
+
+  --shadow:       0 18px 45px -12px rgba(150, 105, 95, .28);
+  --shadow-soft:  0 8px 24px -8px rgba(150, 105, 95, .20);
+
+  --serif: "Playfair Display", Georgia, "Times New Roman", serif;
+  --sans:  "Quicksand", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  min-height: 100vh;
+  min-height: 100dvh;
+  font-family: var(--sans);
+  color: var(--ink);
+  background: var(--cream);
+  background-image:
+    radial-gradient(ellipse 90% 55% at 50% 0%,   rgba(244, 194, 206, .55) 0%, transparent 65%),
+    radial-gradient(ellipse 70% 50% at 12% 100%, rgba(251, 227, 232, .70) 0%, transparent 70%),
+    radial-gradient(ellipse 70% 45% at 92% 78%,  rgba(243, 231, 216, .85) 0%, transparent 70%);
+  background-attachment: fixed;
+  overflow-x: hidden;
+}
+
+main {
+  min-height: 100dvh;
+  display: grid;
+  place-items: center;
+  padding: clamp(1rem, 4vw, 2.5rem);
+  padding-top: max(1.25rem, env(safe-area-inset-top));
+  padding-bottom: max(1.5rem, env(safe-area-inset-bottom));
+}
+
+/* ─────────── Pantallas ─────────── */
+
+.screen {
+  display: none;
+  width: 100%;
+  max-width: 30rem;
+  text-align: center;
+}
+.screen.is-active {
+  display: block;
+  animation: screen-in .65s cubic-bezier(.22, 1, .36, 1) both;
+}
+
+@keyframes screen-in {
+  from { opacity: 0; transform: translateY(14px) scale(.985); }
+  to   { opacity: 1; transform: none; }
+}
+
+/* ─────────── Pantalla 1 · la pregunta ─────────── */
+
+.card {
+  background: var(--card);
+  border-radius: 28px;
+  padding: clamp(1.75rem, 6vw, 2.75rem) clamp(1.25rem, 5vw, 2.25rem);
+  box-shadow: var(--shadow);
+  border: 1px solid rgba(255, 255, 255, .75);
+}
+
+.kicker {
+  font-size: .7rem;
+  font-weight: 600;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  margin-bottom: 1.15rem;
+}
+
+.title {
+  font-family: var(--serif);
+  font-weight: 600;
+  font-size: clamp(1.75rem, 8.5vw, 2.5rem);
+  line-height: 1.18;
+  color: var(--pink);
+  text-wrap: balance;
+}
+
+.deco {
+  display: inline-block;
+  font-size: .62em;
+  vertical-align: .18em;
+  animation: wiggle 4.5s ease-in-out infinite;
+}
+.deco:last-child { animation-delay: -2.25s; }
+
+@keyframes wiggle {
+  0%, 100% { transform: rotate(-9deg) scale(1); }
+  50%      { transform: rotate(9deg) scale(1.1); }
+}
+
+.choices {
+  margin-top: 2.1rem;
+  display: flex;
+  flex-direction: column;
+  gap: .8rem;
+  align-items: stretch;
+}
+
+/* ─────────── Botones ─────────── */
+
+.btn {
+  font-family: var(--sans);
+  font-size: 1.05rem;
+  font-weight: 700;
+  padding: 1.05rem 1.5rem;
+  border: none;
+  border-radius: 999px;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: .5rem;
+  -webkit-tap-highlight-color: transparent;
+  transition: transform .22s cubic-bezier(.34, 1.56, .64, 1), box-shadow .22s ease, opacity .3s ease;
+}
+
+.btn--yes,
+.btn--confirm {
+  background: linear-gradient(135deg, #E8617E 0%, var(--pink) 55%, var(--pink-deep) 100%);
+  color: #fff;
+  box-shadow: 0 10px 24px -8px rgba(193, 63, 92, .62);
+}
+.btn--yes:hover,
+.btn--confirm:hover { transform: translateY(-3px) scale(1.025); box-shadow: 0 16px 30px -8px rgba(193, 63, 92, .55); }
+.btn--yes:active,
+.btn--confirm:active { transform: scale(.97); }
+
+.heart { display: inline-block; animation: beat 1.4s ease-in-out infinite; }
+@keyframes beat {
+  0%, 100%  { transform: scale(1); }
+  14%, 42%  { transform: scale(1.22); }
+  28%       { transform: scale(1); }
+}
+
+/* El botón "No" — se esfuma antes de que el clic alcance a registrarse. */
+.btn--no {
+  background: transparent;
+  color: var(--ink-soft);
+  border: 1.5px solid rgba(154, 136, 128, .35);
+  font-weight: 600;
+  will-change: transform, opacity;
+}
+.btn--no.is-fleeing {
+  opacity: 0;
+  pointer-events: none;
+  filter: blur(3px);
+}
+
+.btn--confirm {
+  margin-top: 1.6rem;
+  width: 100%;
+}
+
+/* ─────────── Pantalla 2 · las tarjetas ─────────── */
+
+.eyebrow {
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 500;
+  font-size: clamp(1.35rem, 6vw, 1.7rem);
+  color: var(--pink);
+  margin-bottom: 1.25rem;
+  opacity: .9;
+}
+
+/* Todas las tarjetas comparten la misma celda: la altura no salta al navegar. */
+.deck { display: grid; }
+
+.info-card {
+  grid-area: 1 / 1;
+  background: var(--card);
+  border-radius: 26px;
+  padding: clamp(1.6rem, 6vw, 2.25rem) clamp(1.25rem, 5vw, 2rem);
+  box-shadow: var(--shadow);
+  border: 1px solid rgba(255, 255, 255, .75);
+
+  opacity: 0;
+  visibility: hidden;
+  transform: translateX(26px);
+  transition: opacity .38s ease, transform .42s cubic-bezier(.22, 1, .36, 1), visibility .42s;
+}
+.info-card.from-left { transform: translateX(-26px); }
+
+.info-card.is-active {
+  opacity: 1;
+  visibility: visible;
+  transform: none;
+}
+
+.info-emoji {
+  display: block;
+  font-size: 2.1rem;
+  line-height: 1;
+  margin-bottom: .7rem;
+  animation: float 3.6s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-6px); }
+}
+
+.info-label {
+  font-size: .72rem;
+  font-weight: 700;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  margin-bottom: .55rem;
+}
+
+.info-value {
+  font-family: var(--serif);
+  font-weight: 600;
+  font-size: clamp(1.4rem, 6.5vw, 1.85rem);
+  line-height: 1.25;
+  color: var(--pink);
+  text-wrap: balance;
+}
+
+.info-sub {
+  margin-top: .7rem;
+  font-size: .92rem;
+  font-weight: 500;
+  color: var(--ink-soft);
+  text-wrap: balance;
+}
+
+.final-title {
+  font-family: var(--serif);
+  font-weight: 700;
+  font-size: clamp(1.6rem, 7.5vw, 2.1rem);
+  line-height: 1.2;
+  color: var(--pink);
+  text-wrap: balance;
+}
+
+/* ─────────── Lasaña en CSS ─────────── */
+
+.lasagna {
+  position: relative;
+  width: 122px;
+  margin: 1.5rem auto .35rem;
+  padding: 0 0 6px;
+  display: flex;
+  flex-direction: column;
+  filter: drop-shadow(0 8px 12px rgba(150, 105, 95, .3));
+  animation: float 4.4s ease-in-out infinite;
+}
+
+.lasagna .layer {
+  display: block;
+  height: 11px;
+  border-radius: 4px;
+  margin-bottom: -1px;
+}
+
+.layer--cheese {
+  height: 15px;
+  border-radius: 10px 10px 5px 5px;
+  background: linear-gradient(175deg, #FBE0A6 0%, #F2C46A 55%, #E0A945 100%);
+  box-shadow: inset 0 -2px 3px rgba(180, 130, 45, .3);
+}
+.layer--pasta { background: linear-gradient(175deg, #F6D9A0 0%, #EDC582 100%); }
+.layer--sauce { background: linear-gradient(175deg, #D4534A 0%, #B93B36 100%); height: 13px; }
+
+.lasagna .steam {
+  position: absolute;
+  bottom: 100%;
+  width: 5px;
+  height: 22px;
+  border-radius: 50%;
+  background: linear-gradient(to top, rgba(255, 255, 255, .85), transparent);
+  animation: steam 2.8s ease-in-out infinite;
+}
+.steam--1 { left: 24%; animation-delay: 0s; }
+.steam--2 { left: 48%; animation-delay: .7s; height: 28px; }
+.steam--3 { left: 72%; animation-delay: 1.4s; }
+
+@keyframes steam {
+  0%   { opacity: 0; transform: translateY(6px) scaleX(1); }
+  35%  { opacity: .9; }
+  100% { opacity: 0; transform: translateY(-16px) scaleX(1.7); }
+}
+
+.ingredients {
+  font-size: 1.15rem;
+  letter-spacing: .06em;
+  margin-top: .5rem;
+}
+
+/* ─────────── Navegación ─────────── */
+
+.nav {
+  margin-top: 1.5rem;
+  display: flex;
+  gap: .7rem;
+  justify-content: center;
+}
+
+.btn--ghost {
+  background: var(--card);
+  color: var(--pink);
+  box-shadow: var(--shadow-soft);
+  border: 1px solid rgba(255, 255, 255, .8);
+  padding: .85rem 1.6rem;
+  font-size: .95rem;
+}
+.btn--ghost:hover { transform: translateY(-2px); }
+.btn--ghost:active { transform: scale(.97); }
+.btn--ghost[hidden] { display: none; }
+
+.dots {
+  margin-top: 1.3rem;
+  display: flex;
+  gap: .45rem;
+  justify-content: center;
+}
+.dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: rgba(217, 82, 110, .25);
+  transition: background .35s ease, transform .35s ease;
+}
+.dot.is-on { background: var(--pink); transform: scale(1.35); }
+
+/* ─────────── Accesibilidad ─────────── */
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .01ms !important;
+  }
+}
+
+@media (min-width: 480px) {
+  .choices { flex-direction: row; justify-content: center; }
+  .choices .btn { flex: 1 1 0; }
+}
